@@ -2,20 +2,22 @@ boolean right = false;
 boolean up = false;
 boolean down = false;
 boolean left = false;
+boolean touchWall = false;
 int snake_speed= 10;
+int applex = (round(random(47))+1)*8;
+int appley = (round(random(47))+1)*8;
 int size = snake_speed-1;
 int time=0;
-int maxlenth = 100;
+int maxlength = 100;
 
-int[] xpos_array = new int[maxlenth];
-int[] ypos_array = new int[maxlenth];
-Snakepart[] snakepart_array = new Snakepart[maxlenth];
+int[] xpos_array = new int[maxlength];
+int[] ypos_array = new int[maxlength];
+Snakepart[] snakepart_array = new Snakepart[maxlength];
 
 void setup() {
   size(500,500);
-  
- //noStroke();
   fill(255, 102,255);
+  textAlign(CENTER);
 for (int i = 0; i < snakepart_array.length; i++) {
    snakepart_array[i] = new Snakepart(xpos_array[0],ypos_array[0],snake_speed);
     }
@@ -28,23 +30,44 @@ void draw(){
     background(20); 
     drawsnake();
     time=1;
+   
   }
+  rect(applex, appley, 9, 9);
+  //if (touchWall == true){
+     
+  //}
+
+  if((xpos == applex)&&(ypos==appley)){
+background(255);  }
+  
 }
 
 
 
 
 void drawsnake(){
-  for (int i = maxlenth-1; i > 0; i--) {
+  for (int i = maxlength-1; i > 0; i--) {
     xpos_array[i] = xpos_array[i-1];
     ypos_array[i] = ypos_array[i-1];
     rect(xpos_array[i], ypos_array[i], size, size);
     snakepart_array[i].movehead();
   }
-}
 
-void checkdead(){
- 
- 
+
+if ((xpos == applex) && (ypos == appley)){
+  maxlength++;
+  fill(255,0,0);
   
 }
+if (touchWall == true){
+ background(0);
+ text ("Haha you lost looooser", width/2, height/2); 
+ text ("Your score is " + maxlength, width/2 , height/2 - 30 );
+ 
+
+}
+
+}
+
+
+
