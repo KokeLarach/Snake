@@ -1,3 +1,4 @@
+
 int speed;
 int xpos;
 int ypos;
@@ -18,22 +19,38 @@ void movehead(){
        xpos = xpos + speed;
        println("x---"+ xpos);
        xpos_array[0] = xpos;
+       if (xpos >= 490 || xpos <=0){
+        println("ur dead lol"); 
+        touchWall = true;
+
+       }
      }
     if (xpos > 0 && left == true) {
       xpos = xpos - speed;
       println("x---"+xpos);
        xpos_array[0] = xpos;
+        if (xpos >= 490 || xpos<=0){
+        println("ur dead lol"); 
+        touchWall = true;
+       }
      }
    if (ypos < (height-snake_speed) &&  down == true) {
       ypos = ypos + speed;
       println("y---"+ypos);
      ypos_array[0] = ypos;
+      if (ypos >= 490 || ypos<=0){
+        println("ur dead lol"); 
+        touchWall = true;
+       }
    }
     if (ypos > 0 && up == true){
       ypos = ypos - speed;
       println("y---"+ypos);
       ypos_array[0] = ypos;
+       if (ypos >= 490 || ypos<=0){
+        println("ur dead lol"); 
+        touchWall = true;
+       }
     }
-    
   }
 }  
